@@ -1,10 +1,9 @@
 pipeline {
-    agent any 
-
+    agent any
     stages {
-        stage('Run U-Tests'){
+        stage('Run UTs') { 
             steps {
-                sh 'echo ran'
+                sh 'npm test'
             }
         }
     }
