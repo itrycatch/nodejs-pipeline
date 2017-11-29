@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Run U-Tests'){
             steps {
-                sh 'npm test'
+                sh 'echo ran'
             }
         }
     }
