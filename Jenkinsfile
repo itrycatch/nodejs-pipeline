@@ -1,8 +1,8 @@
 pipeline {
-    agent any
+    agent any 
 
     stages {
-        stage('Run u-tests') {
+        stage('Run U-Tests'){
             steps {
                 sh 'npm test'
             }
