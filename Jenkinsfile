@@ -1,6 +1,6 @@
- 
-pipeline {
+ pipeline {
     agent any
+    
     stages {
         stage('Run u-tests') {
             steps {
