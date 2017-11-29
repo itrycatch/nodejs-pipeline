@@ -5,10 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start":"node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive"
   },
   "dependencies": {
     "express": "*"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.4.2"
   },
   "author": "",
   "license": "ISC"
