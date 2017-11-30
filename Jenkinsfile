@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build node_modules') {
             steps {
-                sh 'node install'
+                sh 'npm install'
             }
         }
         stage('Run UTs') { 
