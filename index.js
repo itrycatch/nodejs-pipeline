@@ -15,6 +15,7 @@ app.get('/add', function (req, res) {
         res.write(String(result));
         res.end();
     }).catch(function (err) {
+        res.w
         res.write(String(err));
         res.end();
     });

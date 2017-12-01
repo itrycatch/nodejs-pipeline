@@ -2,7 +2,7 @@ var sleep=require("./sleep.js").sleep;
 
 var func = function (a, b) {
     return new Promise(function (resolve, reject) {
-        sleep(3000);
+        sleep(1000);
         if (a + b == (a + b)) {
             resolve((a + b));
         } else {
