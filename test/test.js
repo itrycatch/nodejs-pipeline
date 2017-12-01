@@ -5,7 +5,7 @@ chai.use(require('chai-http'));
 
 const app = require('../index.js');
 
-describe('The API endpoint /users', function () {
+describe('The API endpoints', function () {
 
     it('Get the user', function () {
         return chai.request(app)
