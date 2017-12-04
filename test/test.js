@@ -51,3 +51,39 @@ describe('The /add endpoint', function () {
     });
 
 });
+
+
+describe('The /metrics endpoint', function () {
+
+    it('GET the correct metrics', function () {
+        return chai.request(app)
+            .get('/metrics')
+            .then(function (res) {
+                expect(res).to.have.status(200);
+                expect(res).to.be.json;
+                expect(res.body.metrics).to.deep.equal(require('../utils/metrics.js').metrics);
+            });
+    });
+
+    it('POST and validate the correct metrics', function () {
+        return chai.request(app)
+            .post('/metrics')
+            .send({ "metrics": require("../utils/metrics.js").metrics.slice(0, 1) })
+            .then(function (res) {
+                expect(res).to.have.status(200);
+            });
+    });
+
+    it('POST and validate the incorrect metrics', function () {
+        return chai.request(app)
+            .post('/metrics')
+            .send({ "metrics": ["blha", "as"] })
+            .then(function (res) {
+                throw new Error("The invalid metrics are correct");
+            })
+            .catch(function (err) {
+                expect(err).to.have.status(400);
+            });
+    });
+
+});

@@ -3,6 +3,9 @@ var jsonF = require('./books');
 var func = require('./utils/async.js').func;
 var app = express()
 
+app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded());
+
 app.get('/users', function (req, res) {
     res.write(jsonF.firstName)
     res.end()
@@ -19,6 +22,31 @@ app.get('/add', function (req, res) {
         res.write(String(err));
         res.end();
     });
+});
+
+app.get('/metrics', function (req, res) {
+    var data = require('./utils/metrics.js').metrics;
+    var data = {
+        ["metrics"]: data
+    }
+    res.status(200);
+    res.setHeader('Content-Type', 'application/json');
+    res.write(JSON.stringify(data));
+    res.end();
+});
+
+app.post('/metrics', function (req, res) {
+    var data = req.body.metrics;
+    var metrics = require('./utils/metrics.js').metrics;
+    var invalid_datas = data.filter((x) => !metrics.includes(x));
+    if (invalid_datas.length > 0) {
+        res.status(400);
+        console.log("Bad request 400 : Invalid data");
+    }
+    else {
+        res.status(200);
+    }
+    res.end();
 });
 
 app.listen(3000);
