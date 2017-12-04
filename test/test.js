@@ -68,7 +68,8 @@ describe('The /metrics endpoint', function () {
     it('POST and validate the correct metrics', function () {
         return chai.request(app)
             .post('/metrics')
-            .send({ "metrics": require("../utils/metrics.js").metrics.slice(0, 1) })
+            .send({ "metrics": require("../utils/metrics.js").metrics.slice(0, 1) ,
+                "expression":"X+5=4"})
             .then(function (res) {
                 expect(res).to.have.status(200);
             });
@@ -77,7 +78,32 @@ describe('The /metrics endpoint', function () {
     it('POST and validate the incorrect metrics', function () {
         return chai.request(app)
             .post('/metrics')
-            .send({ "metrics": ["blha", "as"] })
+            .send({ "metrics": ["fdgf", "afsfdss"]
+                ,"expression":"X+5=4" })
+            .then(function (res) {
+                throw new Error("The invalid metrics are correct");
+            })
+            .catch(function (err) {
+                expect(err).to.have.status(400);
+            });
+    });
+
+    it('POST and validate empty metrics', function () {
+        return chai.request(app)
+            .post('/metrics')
+            .send({ "metrics": [] , "expression": "x+5=2" })
+            .then(function (res) {
+                throw new Error("The invalid metrics are correct");
+            })
+            .catch(function (err) {
+                expect(err).to.have.status(400);
+            });
+    });
+
+    it('POST and validate empty expression', function () {
+        return chai.request(app)
+            .post('/metrics')
+            .send({ "metrics": ["CPU"] , "expression": "" })
             .then(function (res) {
                 throw new Error("The invalid metrics are correct");
             })

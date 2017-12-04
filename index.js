@@ -37,14 +37,17 @@ app.get('/metrics', function (req, res) {
 
 app.post('/metrics', function (req, res) {
     var data = req.body.metrics;
+    var expression = req.body.expression;
+
     var metrics = require('./utils/metrics.js').metrics;
     var invalid_datas = data.filter((x) => !metrics.includes(x));
-    if (invalid_datas.length > 0) {
+    if (invalid_datas.length > 0 || data.length <= 0 || expression == '') {
         res.status(400);
         console.log("Bad request 400 : Invalid data");
     }
     else {
         res.status(200);
+        console.log(expression);
     }
     res.end();
 });
