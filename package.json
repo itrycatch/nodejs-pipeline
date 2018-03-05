@@ -20,7 +20,7 @@
     "mocha": "^3.4.2"
   },
   "author": "mik-dass",
-  "license": "",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mik-dass/Nodejs-Pipeline-Demo/issues"
   }
