@@ -1,6 +1,6 @@
 {
   "name": "nodejs-pipeline-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Nodejs API app with Unit test cases and a Jenkins pipeline",
   "main": "index.js",
   "scripts": {
